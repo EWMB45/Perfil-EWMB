@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil EW: E. Wilber Machado</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa;
+        }
+        .card {
+            background-color: #ffffff;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+        .interactive-title {
+            cursor: pointer;
+            display: inline-block;
+            position: relative;
+        }
+        .interactive-title h4::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #ee9b00;
+            transition: width 0.3s ease-in-out;
+        }
+        .interactive-title:hover h4::after {
+            width: 100%;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .modal-overlay {
+            transition: opacity 0.3s ease;
+            opacity: 0;
+            pointer-events: none;
+        }
+        .modal-overlay.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .modal-content {
+             transition: transform 0.3s ease;
+             transform: scale(0.95);
+        }
+        .modal-overlay.visible .modal-content {
+            transform: scale(1);
+        }
+    </style>
+</head>
+<body class="antialiased text-gray-800">
+    <!-- Palette: Energetic & Playful -> #005f73, #0a9396, #94d2bd, #e9d8a6, #ee9b00, #ca6702, #bb3e03, #ae2012, #9b2226 -->
+    <header class="bg-gradient-to-r from-[#005f73] to-[#0a9396] text-white p-8 md:p-12 text-center">
+        <h1 class="text-4xl md:text-5xl font-bold">E. Wilber Machado</h1>
+        <p class="mt-6 text-lg max-w-3xl mx-auto text-blue-100">Un perfil integral donde la <strong class="text-white">Ingeniería en Energías Renovables</strong> y la <strong class="text-white">Psicología Organizacional</strong> convergen para crear soluciones sostenibles, seguras y rentables.</p>
+    </header>
+
+    <main class="container mx-auto p-4 sm:p-6 md:p-8 -mt-10">
+        
+        <!-- Key Competencies Section -->
+        <section class="mb-12 card p-8">
+            <h2 class="text-3xl font-bold text-center mb-8">Competencias Clave</h2>
+            <p class="text-center text-gray-600 mb-10 max-w-3xl mx-auto">Un conjunto de certificaciones y títulos que sustentan un enfoque integral. Haga clic en cada competencia para ver una descripción detallada.</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8" id="qualifications-container">
+                <!-- Qualifications will be injected here by JS -->
+            </div>
+        </section>
+
+        <!-- Bubble Chart and Companies -->
+        <section class="mb-12">
+             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="card p-6">
+                    <h3 class="text-xl font-bold mb-4 text-center">Competencias/Skills</h3>
+                    <div class="chart-container" style="height: 380px;">
+                        <canvas id="bubbleChart"></canvas>
+                    </div>
+                    <p class="text-center text-gray-500 mt-4 text-xs">Cada burbuja representa un área de competencia. El tamaño refleja la magnitud de la experiencia acumulada, mostrando un perfil sustancial y equilibrado.</p>
+                </div>
+                <div class="card p-6 flex flex-col justify-center">
+                     <h3 class="text-xl font-bold mb-6 text-center">Mis Empresas</h3>
+                    <div class="space-y-6">
+                        <div class="p-4 border-l-4 border-[#ca6702] bg-orange-50 rounded-r-lg">
+                            <h4 class="font-bold text-lg">Safework Energy</h4>
+                            <p class="text-gray-700 mt-1 text-sm">Entregar soluciones de eficiencia energética y gestión de activos (O&M) para optimizar el rendimiento técnico y financiero de los clientes.</p>
+                            <a href="https://www.safeworkenergy.com" target="_blank" class="text-sm font-semibold text-[#ca6702] hover:underline mt-2 inline-block">www.safeworkenergy.com →</a>
+                        </div>
+                        <div class="p-4 border-l-4 border-[#005f73] bg-teal-50 rounded-r-lg">
+                            <h4 class="font-bold text-lg">Safework Safety</h4>
+                            <p class="text-gray-700 mt-1 text-sm">Crear entornos de trabajo seguros y productivos, fortaleciendo a los equipos y minimizando los riesgos desde su raíz organizacional.</p>
+                            <a href="https://www.safework.uy" target="_blank" class="text-sm font-semibold text-[#005f73] hover:underline mt-2 inline-block">www.safework.uy →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Practical Experience -->
+        <section class="mb-12 card p-8">
+            <h2 class="text-3xl font-bold text-center mb-8">Proyectos Destacados y Experiencia en Campo</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="p-4 bg-gray-50 rounded-lg">
+                    <h4 class="font-bold text-lg text-[#ae2012]">Supervisor Técnico de Reparación de Palas</h4>
+                    <p class="text-sm text-gray-500">P.E. Artilleros, La Banderita</p>
+                    <p class="mt-1 text-gray-700 text-sm">Liderazgo técnico en reparaciones complejas para clientes como <strong class="font-semibold">Vestas</strong> y <strong class="font-semibold">Suzlon</strong> en Uruguay y Argentina.</p>
+                </div>
+                 <div class="p-4 bg-gray-50 rounded-lg">
+                    <h4 class="font-bold text-lg text-[#bb3e03]">Análisis de Extensión de Vida Útil (LTE)</h4>
+                    <p class="text-sm text-gray-500">P.E. Caracoles I & II (2023-24)</p>
+                    <p class="mt-1 text-gray-700 text-sm">Análisis técnico de "Life Time Extension" para los dos parques, evaluando la viabilidad y seguridad para extender su operación.</p>
+                </div>
+                <div class="p-4 bg-gray-50 rounded-lg">
+                    <h4 class="font-bold text-lg text-[#ca6702]">Supervisor de O&M</h4>
+                    <p class="text-sm text-gray-500">P.E. COSEGA, La Pampa, Argentina</p>
+                    <p class="mt-1 text-gray-700 text-sm">Supervisión del mantenimiento de cajas multiplicadoras para aerogeneradores <strong class="font-semibold">NEG Micon</strong>.</p>
+                </div>
+                <div class="p-4 bg-gray-50 rounded-lg">
+                    <h4 class="font-bold text-lg text-[#ee9b00]">Fundador y Gerente</h4>
+                    <p class="text-sm text-gray-500">Nexus (UY) y Luminex (ES)</p>
+                    <p class="mt-1 text-gray-700 text-sm">Más de 20 años de experiencia en dirección de empresas, gestión de personal y desarrollo de negocio en América y Europa.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Languages -->
+        <section class="mb-12 card p-8">
+            <h2 class="text-3xl font-bold text-center mb-8">Competencias Lingüísticas</h2>
+             <div class="chart-container h-64">
+                <canvas id="languageBarChart"></canvas>
+            </div>
+        </section>
+
+    </main>
+    
+    <!-- Modal -->
+    <div id="qualification-modal" class="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center p-4 modal-overlay z-50">
+        <div class="modal-content bg-white rounded-lg shadow-2xl p-6 max-w-lg w-full">
+            <h3 id="modal-title" class="text-2xl font-bold text-[#005f73] mb-4"></h3>
+            <p id="modal-description" class="text-gray-700 mb-6"></p>
+            <div class="text-right">
+                <button id="modal-close-button" class="bg-[#005f73] text-white font-bold py-2 px-6 rounded-lg hover:bg-[#0a9396] transition-colors">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="text-center p-6 mt-8 bg-[#005f73] text-white">
+        <p>Perfil Profesional de E. Wilber Machado</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            const qualifications = [
+                {
+                    title: 'Verificador CMVP® por la AEE',
+                    description: 'Certificación como Profesional en Medición y Verificación por la Association of Energy Engineers. Registrado en la Dirección Nacional de Energía del MIEM - UY. Me permite diseñar, implementar y verificar proyectos de ahorro energético con rigor técnico y garantía de retorno de la inversión (ROI) bajo el protocolo internacional IPMVP.'
+                },
+                {
+                    title: 'Auditor en OSHAS / ISO 50001',
+                    description: 'Capacidad para realizar auditorías de sistemas de gestión de la seguridad y salud en el trabajo (OSHAS 18001) y de la energía (ISO 50001), identificando brechas y oportunidades de mejora para garantizar el cumplimiento y la eficiencia.'
+                },
+                {
+                    title: 'Licenciado en Psicología del Trabajo',
+                    description: 'Especialización en Psicología del Trabajo y las Organizaciones, obtenido en UNED-ES y homologado en UDELAR-UY. Me permite analizar el factor humano, la dinámica de equipos y la cultura organizacional para potenciar la seguridad, la motivación y la productividad del personal técnico.'
+                },
+                {
+                    title: 'Técnico en PRL (España y Uruguay)',
+                    description: 'Máster Oficial en Prevención de Riesgos Laborales por la Universidad Francisco de Vitoria-Madrid-ES y homologado por UTU-UY. Esto me otorga un dominio completo del marco normativo y la gestión de riesgos en entornos laborales complejos y transnacionales.'
+                },
+                {
+                    title: 'Técnico en Montaje, O&M',
+                    description: 'Experiencia práctica certificada por la Asociación Empresarial Eólica (AEE-ES) y CEFOMER-UY en la Operación, Mantenimiento y Montaje de Parques Eólicos y Fotovoltaicos. Aseguro la correcta ejecución de los procedimientos técnicos para maximizar la disponibilidad y vida útil de los activos.'
+                },
+                {
+                    title: 'Tecnólogo / Ingeniero en EERRs',
+                    description: 'Tecnólogo en Energías Renovables por UTEC (2018), finalizando la carrera de Ingeniería. Perfil que combina una sólida base técnica y práctica con un profundo conocimiento en el diseño y gestión de proyectos de energías limpias.'
+                },
+                {
+                    title: 'Técnico Registrado DNB (UY)',
+                    description: 'Técnico habilitado por la Dirección Nacional de Bomberos del Ministerio del Interior, para el diseño y ejecución de instalaciones de protección contra incendios.'
+                },
+                {
+                    title: 'Instalador Autorizado UTE (UY)',
+                    description: 'Firma autorizada por UTE (Administración Nacional de Usinas y Trasmisiones Eléctricas) para la ejecución de instalaciones eléctricas, asegurando el cumplimiento de la normativa técnica y de seguridad del país.'
+                }
+            ];
+
+            const qualificationsContainer = document.getElementById('qualifications-container');
+            qualifications.forEach((q) => {
+                const div = document.createElement('div');
+                div.className = 'p-4';
+                div.innerHTML = `
+                    <div class="interactive-title">
+                        <h4 class="font-semibold text-blue-600 text-center">${q.title}</h4>
+                    </div>
+                `;
+                div.addEventListener('click', () => openModal(q.title, q.description));
+                qualificationsContainer.appendChild(div);
+            });
+
+            const modal = document.getElementById('qualification-modal');
+            const modalTitle = document.getElementById('modal-title');
+            const modalDescription = document.getElementById('modal-description');
+            const modalCloseButton = document.getElementById('modal-close-button');
+            
+            const openModal = (title, description) => {
+                modalTitle.textContent = title;
+                modalDescription.textContent = description;
+                modal.classList.add('visible');
+            };
+
+            const closeModal = () => {
+                modal.classList.remove('visible');
+            };
+
+            modalCloseButton.addEventListener('click', closeModal);
+            modal.addEventListener('click', (event) => {
+                if (event.target === modal) {
+                    closeModal();
+                }
+            });
+
+            // Bubble Chart for Competencies
+            const bubbleCtx = document.getElementById('bubbleChart').getContext('2d');
+            const bubbleData = {
+                datasets: [
+                    {
+                        label: 'Gestión Técnica y O&M (+30 años)',
+                        data: [{ x: 20, y: 30, r: 25 }],
+                        backgroundColor: 'rgba(0, 95, 115, 0.7)'
+                    },
+                    {
+                        label: 'Desarrollo de Negocio (+20 años)',
+                        data: [{ x: 40, y: 60, r: 25 }],
+                        backgroundColor: 'rgba(10, 147, 150, 0.7)'
+                    },
+                    {
+                        label: 'Seguridad y PRL (+15 años)',
+                        data: [{ x: 65, y: 35, r: 22 }],
+                        backgroundColor: 'rgba(148, 210, 189, 0.7)'
+                    },
+                    {
+                        label: 'Factor Humano (+10 años)',
+                        data: [{ x: 80, y: 70, r: 22 }],
+                        backgroundColor: 'rgba(238, 155, 0, 0.7)'
+                    },
+                    {
+                        label: 'Eficiencia Energética (+10 años)',
+                        data: [{ x: 50, y: 15, r: 20 }],
+                        backgroundColor: 'rgba(202, 103, 2, 0.7)'
+                    }
+                ]
+            };
+            new Chart(bubbleCtx, {
+                type: 'bubble',
+                data: bubbleData,
+                options: {
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: { display: false, min: 0, max: 100 },
+                        x: { display: false, min: 0, max: 100 }
+                    },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return context.dataset.label;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Bar Chart for Languages
+            const languageCtx = document.getElementById('languageBarChart').getContext('2d');
+            new Chart(languageCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Español', 'Portugués', 'Inglés'],
+                    datasets: [{
+                        label: 'Nivel de Competencia',
+                        data: [100, 100, 90],
+                        backgroundColor: ['#0a9396', '#0a9396', '#94d2bd'],
+                        borderColor: ['#005f73', '#005f73', '#0a9396'],
+                        borderWidth: 1,
+                        borderRadius: 4,
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            max: 100,
+                             ticks: {
+                                callback: function(value) {
+                                    return value + '%'
+                                }
+                            }
+                        },
+                        y: {
+                           grid: { display: false }
+                        }
+                    },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let level = '';
+                                    if(context.raw === 100) level = ' (Nativo)';
+                                    if(context.raw === 90) level = ' (Profesional C1)';
+                                    return `Competencia: ${context.raw}%${level}`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
